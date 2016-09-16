@@ -37,22 +37,15 @@ def score(dice)
   length = dice.size
 
   for i in 0...length
-    puts "iteration - #{i} of #{length}: #{dice[i]}"
     next if dice[i] == REPLACED_CHAR
 
     if dice.count(dice[i]) >= 3
-      puts "possible set, dice: #{dice.to_s}"
       is_a_set = true
       set_number = dice[i]
       dice.map! { |x| x = (x == set_number) ? REPLACED_CHAR : x }
-
-      puts "is_a_set: #{is_a_set}"
-      puts "set_number: #{set_number}"
-      puts "dice: #{dice.to_s}"
     elsif dice[i] == 1
       sum += 100
     elsif dice[i] == 5
-      puts "dice[#{i}] == 5"
       sum += 50
     end
   end
@@ -68,7 +61,7 @@ def score(dice)
     sum += surplus * 100 if set_number == 1
     sum += surplus * 50 if set_number == 5
   end
-  
+
   return sum
 end
 
